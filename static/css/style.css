@@ -1,0 +1,142 @@
+a {
+    text-decoration: none;
+    font-family: monospace;
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    min-height: 800px;
+}
+
+.header {
+    display: flex;
+    max-width: inherit;
+    max-height: 250px;
+    margin: 10px 60px;
+}
+
+.logo-img {
+    height: 70px;
+}
+
+.register,
+.register:hover,
+li > a,
+li > a:hover,
+.promo > a,
+.promo > a:hover {
+    transition: 0.3s;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.ul-menu,
+.ul-login {
+    display: flex;
+}
+
+li > a {
+    display: block;
+    margin: auto 12px;
+    color: #212121;
+    font-size: 11pt;
+    font-weight: 100;
+}
+
+li > a:hover {
+    color: #ff8148;
+}
+
+.ul-menu > li,
+.ul-login > li {
+    display: flex;
+    align-items: center;
+}
+
+.header-links {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 10px;
+
+}
+
+.register {
+    border: 1px solid #ff8148;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.register:hover {
+    background-color: #ff8148;
+    color: #fff;
+    box-shadow: 0 4px 36px #ffbe4a;
+}
+
+.main {
+    min-height: 600px;
+}
+
+.banner-1 {
+    display: flex;
+    justify-content: space-between;
+    background-color: #030227;
+    margin: 20px 0;
+    box-shadow: 0 6px 24px #aaa;
+    
+}
+
+.banner-1-img {
+    height: 400px;
+}
+
+.promo {
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+
+.promo > h3 {
+    color: #ff8148;
+    font-size: 24pt;
+    font-weight: 700;
+    font-family: sans-serif;
+    margin: 100px 0 40px 0;
+}
+
+.promo > p {
+    color: white;
+    font-family: sans-serif;
+}
+
+.promo > a {
+    display: block;
+    width: 300px;
+    margin: 48px auto;
+    padding: 10px;
+    color: white;
+    background-color: #ff8148;
+    font-size: 18pt;
+    font-weight: 500;
+    font-family: sans-serif;
+    border-radius: 20px;
+}
+
+.promo > a:hover {
+    background-color: #ff6747;
+    box-shadow: 0 6px 100px #ff8148;
+}
+
+.promo > a:active {
+    box-shadow: 0 6px 184px #ff8148;
+} 
