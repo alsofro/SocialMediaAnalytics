@@ -15,5 +15,10 @@
                     зарегистрироваться
                 </a>
             </button>
+            <button>
+                <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+                    VK sign in
+                </a>
+            </button>
 
 {% endblock %}

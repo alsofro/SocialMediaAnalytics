@@ -27,6 +27,7 @@
                             <a href="{% url 'auth:edit' %}">
                                 {{ user.first_name|default:'Пользователь' }}
                             </a>
+                            <a href="{% url 'auth:logout' %}">выйти</a>
                         </li>
                     </ul>
 
