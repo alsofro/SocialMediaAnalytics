@@ -21,10 +21,25 @@
                     <li><a href="#">КОНТАКТЫ</a></li>
                 </ul>
 
-                <ul class="ul-login">
-                    <li><a href="#">ВОЙТИ</a></li>
-                    <li><a class="register" href="#">ПРИСОЕДИНИТЬСЯ</a></li>
-                </ul>
+                {% if user.is_authenticated %}
+                    <ul class="ul-login">
+                        <li>
+                            <a href="{% url 'auth:edit' %}">
+                                {{ user.first_name|default:'Пользователь' }}
+                            </a>
+                            <a href="{% url 'auth:logout' %}">выйти</a>
+                        </li>
+                    </ul>
+
+                {% else %}
+
+                    <ul class="ul-login">
+                        <li><a href="{% url 'auth:login' %}">ВОЙТИ</a></li>
+                        <li><a class="register" href="{% url 'auth:register' %}">ПРИСОЕДИНИТЬСЯ</a></li>
+                    </ul>
+
+                {% endif %}
+
             </div>
 
 

@@ -1,0 +1,24 @@
+{% extends 'authapp/base.html' %}
+
+{% block content %}
+            <form action="{% url 'auth:login' %}" method="post">
+                {% csrf_token %}
+                {% if next %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
+                {{ login_form.as_p }}
+                <br>
+                <input type="submit" value="войти">
+            </form>
+            <button>
+                <a href="{% url 'auth:register' %}" class="">
+                    зарегистрироваться
+                </a>
+            </button>
+            <button>
+                <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+                    VK sign in
+                </a>
+            </button>
+
+{% endblock %}
