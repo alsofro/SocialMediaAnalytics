@@ -3,6 +3,11 @@ a {
     font-family: monospace;
 }
 
+input {
+    outline: none;
+    border: none;
+}
+
 body {
     margin: 0;
 }
@@ -17,7 +22,7 @@ body {
     display: flex;
     max-width: inherit;
     max-height: 250px;
-    margin: 10px 60px;
+    margin: 20px 60px 10px 60px;
 }
 
 .logo-img {
@@ -29,7 +34,9 @@ body {
 li > a,
 li > a:hover,
 .promo > a,
-.promo > a:hover {
+.promo > a:hover,
+.main-form-submit-button,
+.main-form-submit-button:hover {
     transition: 0.3s;
 }
 
@@ -79,7 +86,7 @@ li > a:hover {
 .register:hover {
     background-color: #ff8148;
     color: #fff;
-    box-shadow: 0 4px 36px #ffbe4a;
+    box-shadow: 0 4px 18px #ffbe4a;
 }
 
 .main {
@@ -92,7 +99,7 @@ li > a:hover {
     background-color: #030227;
     margin: 20px 0;
     box-shadow: 0 6px 24px #aaa;
-    
+
 }
 
 .banner-1-img {
@@ -134,9 +141,107 @@ li > a:hover {
 
 .promo > a:hover {
     background-color: #ff6747;
-    box-shadow: 0 6px 100px #ff8148;
+    box-shadow: 0 6px 48px #ff8148;
 }
 
 .promo > a:active {
-    box-shadow: 0 6px 184px #ff8148;
-} 
+    box-shadow: 0 6px 84px #ff8148;
+}
+
+.main-form {
+    min-width: 320px;
+    display: flex;
+    justify-content: center;
+    margin: 100px auto;
+}
+
+
+.main-form-input-area {
+    display: flex;
+    border-radius: 8px;
+    border: 1px solid #212121;
+    padding: 4px 10px;
+    margin: 10px;
+}
+
+.main-form-submit-button {
+    display: flex;
+    margin-top: 10px;
+    display: block;
+    height: 40px;
+    width: 100px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ff8148;
+    color: black;
+    margin: 10px;
+}
+
+.main-form-submit-button:hover {
+    background-color: #ff8148;
+    color: #fff;
+    box-shadow: 0 4px 18px #ffbe4a;
+    cursor: pointer;
+}
+
+.data-post {
+    margin: 10px;
+}
+
+.post-element {
+    border: 1px solid #ddd;
+    width: 400px;
+    height: fit-content;
+    border-radius: 8px;
+    margin: 15px auto;
+    padding: 20px;
+    box-shadow: 0 4px 10px #eee;
+}
+
+.post-element-top,
+.post-elements-bottom {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-id,
+.post-date,
+.post-likes,
+.post-comments,
+.post-reposts {
+    display: flex;
+    background-color: #eee;
+    border-radius: 4px;
+    padding: 8px;
+    margin: 10px;
+    font-size: 10pt;
+    font-weight: 500;
+    font-family: monospace;
+}
+
+.post-likes {
+    color: red;
+}
+
+.icon-img {
+    height: 16px;
+    margin-right: 4px;
+}
+
+.post-element-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+.post-text {
+    display: flex;
+    margin: 30px 10px;
+    color: #212121;
+    font-size: 10pt;
+    font-weight: 100;
+    font-family: sans-serif;
+}

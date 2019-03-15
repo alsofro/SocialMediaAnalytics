@@ -17,7 +17,7 @@ class SMAUserLoginForm(AuthenticationForm):
 class SMAUserRegisterForm(UserCreationForm):
     class Meta:
         model = SMAUser
-        fields = ('username', 'first_name', 'password1', 'password2', 'email', 'age')
+        fields = ('username', 'first_name', 'password1', 'password2', 'email')
 
     def __init__(self, *args, **kwargs):
         super(SMAUserRegisterForm, self).__init__(*args, **kwargs)

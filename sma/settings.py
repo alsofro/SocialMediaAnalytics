@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainapp',
     'authapp',
-    'social_django'
+    'social_django',
+    'dataqueryapp',
 ]
 
 MIDDLEWARE = [
