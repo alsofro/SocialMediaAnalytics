@@ -61,7 +61,7 @@
                         <div class="post-date">{{post.date}}</div>
                     </div>
 
-                    <div class="post-text">{{post.text}}</div>
+                    <div class="post-text"><p>{{post.text|linebreaks}}</p></div>
 
                     <div class="post-elements-bottom">
                         <div class="post-likes"><img class="icon-img" src="{% static 'images/like.png' %}" alt="likes">{{post.likes}}</div>
