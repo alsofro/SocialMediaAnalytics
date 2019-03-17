@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
-from authapp.models import SMAUser
+from authapp.models import SMAUser, UserProfile
 
 
 class SMAUserLoginForm(AuthenticationForm):
@@ -17,7 +17,7 @@ class SMAUserLoginForm(AuthenticationForm):
 class SMAUserRegisterForm(UserCreationForm):
     class Meta:
         model = SMAUser
-        fields = ('username', 'first_name', 'password1', 'password2', 'email')
+        fields = ('username', 'first_name', 'last_name', 'password1', 'password2', 'email')
 
     def __init__(self, *args, **kwargs):
         super(SMAUserRegisterForm, self).__init__(*args, **kwargs)
@@ -36,7 +36,7 @@ class SMAUserRegisterForm(UserCreationForm):
 class SMAUserEditForm(UserChangeForm):
     class Meta:
         model = SMAUser
-        fields = ('username', 'first_name', 'email', 'age', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'age', 'password')
 
     def __init__(self, *args, **kwargs):
         super(SMAUserEditForm, self).__init__(*args, **kwargs)
@@ -52,3 +52,13 @@ class SMAUserEditForm(UserChangeForm):
             raise forms.ValidationError("Вы слишком молоды!")
 
         return data
+
+class SMAUserProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('first_name', 'last_name', 'vk_username')
+
+    def __init__(self, *args, **kwargs):
+        super(SMAUserProfileEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
