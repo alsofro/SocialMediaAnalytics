@@ -188,7 +188,9 @@ li > a:hover {
     margin: 10px;
 }
 
-.post-element {
+.post-element,
+.group,
+.member {
     border: 1px solid #ddd;
     width: 400px;
     height: fit-content;
@@ -198,8 +200,17 @@ li > a:hover {
     box-shadow: 0 4px 10px #eee;
 }
 
+.group,
+.member {
+    display: flex;
+    width: 400px;
+    vertical-align: middle;
+    justify-content: space-between;
+}
+
 .post-element-top,
-.post-elements-bottom {
+.post-elements-bottom,
+.groups-top {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -209,7 +220,8 @@ li > a:hover {
 .post-date,
 .post-likes,
 .post-comments,
-.post-reposts {
+.post-reposts,
+.groups-id, .groups-members{
     display: flex;
     background-color: #eee;
     border-radius: 4px;
@@ -237,14 +249,55 @@ li > a:hover {
     flex-wrap: wrap;
 }
 
-.post-text {
+.post-text,
+.group-name {
     margin: 30px 10px;
     color: #212121;
     font-size: 10pt;
     font-weight: 100;
     font-family: sans-serif;
 }
+
+.group-name {
+    display: flex;
+    justify-content: center;
+    font-size: 12pt;
+    margin: 15px auto;
+}
 .register-only {
     margin: 100px 0;
     width: auto;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+
+.container-members {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 600px;
+    width: auto;
+    margin: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px #eee;
+}
+
+.container-groups-members {
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+    padding: 15px;
+}
+
+.container-groups {
+    margin: 15px;
 }

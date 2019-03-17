@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="/"><img class="logo-img" src="{% static 'images/logo.png' %}" alt="social media analytics"></a>
+            </div>
+            <div class="header-links">
+                <ul class="ul-menu">
+                    <li><a href="{% url 'dash:main' %}">РАБОЧЕЕ ПРОСТРАНСТВО</a></li>
+                    <li><a href="#">РЕШЕНИЯ</a></li>
+                    <li><a href="#">API</a></li>
+                    <li><a href="#">КОНТАКТЫ</a></li>
+                </ul>
+
+                {% if user.is_authenticated %}
+                <ul class="ul-login">
+                    <li>
+                        <a href="{% url 'auth:edit' %}">
+                            {{ user.first_name|default:'Пользователь'|upper }}
+                        </a>
+                        <a href="{% url 'auth:logout' %}">ВЫЙТИ</a>
+                    </li>
+                </ul>
+
+                {% else %}
+
+                <ul class="ul-login">
+                    <li><a href="{% url 'auth:login' %}">ВОЙТИ</a></li>
+                    <li><a class="register" href="{% url 'auth:register' %}">ПРИСОЕДИНИТЬСЯ</a></li>
+                </ul>
+
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+        <div class="main">
+
+            <form class='main-form' action="/dash/similar_members/" method="POST">
+                <input placeholder="ВВЕДИ ID ДВУХ ГРУПП" class='main-form-input-area' name="groups" type="text">
+                <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
+                {% csrf_token %}
+            </form>
+
+            <div class="container-groups-members">
+
+                <div class="container-groups">
+                    {% for group in groups %}
+                    <div class="group">
+                        <img class='avatar' src="{{group.photo_200}}" alt="{{group.name}}">
+                        <div class="group-right-div">
+                            <div class="groups-top">
+                                <div class="groups-id">ID {{group.id}}</div>
+                                <div class="groups-members">УЧАСТНИКИ: {{group.members_count}}</div>
+                            </div>
+
+                            <div class="group-name">
+                                <a target="_blank" href="http://vk.com/club{{group.id}}">{{group.name|upper}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="container-members">
+                    {% for member in members %}
+                    <div class="member">
+                        <img class='avatar' src="{{member.photo_200}}" alt="{{member.first_name}} {{member.last_name_name}}">
+                        <div class="member-right-div">
+                            <p>{{member.id}}</p>
+                            <p>{{member.first_name|upper}}</p>
+                            <p>{{member.last_name|upper}}</p>
+                            
+                            {%if member.instagram %}
+                            <p><a target="_blank" href="http://instagram.com/{{member.instagram}}">INSTAGRAM {{member.instagram|upper}}</a></p>
+                            {%endif%}
+                            
+                            {%if member.skype %}
+                            <p>SKYPE {{member.skype|upper}}</p>
+                            {%endif%}
+                            
+                            {%if member.twitter %}
+                            <p>TWITTER {{member.twitter|upper}}</p>
+                            {%endif%}
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="footer">
+
+        </div>
+    </div>
+    <script> </script>
+</body>
+
+</html>
