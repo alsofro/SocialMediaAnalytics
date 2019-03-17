@@ -3,11 +3,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import json
 import datetime
+from .models import GroupVkProfile 
 
 
 # Create your views here.
 
 def main(request):
+    
     return render(request, 'dataqueryapp/base.html')
 
 
@@ -68,6 +70,9 @@ def test(request):
             post_reposts = post['reposts']['count']
         except:
             post_reposts = 0
+        
+
+        GroupVkProfile.objects.all()
 
         dataset = {
             'id': post_id,
@@ -77,7 +82,9 @@ def test(request):
             'comments': post_comments,
             'reposts': post_reposts
         }
-
+        
+        bd_group_profile= GroupVkProfile(posts_id= post_id, posts_likes= post_likes, posts_date=post_date, posts_comments= post_comments, posts_reposts= post_reposts)
+        bd_group_profile.save()
         total_posts_dict.append(dataset)
 
     data = {'posts': total_posts_dict}
