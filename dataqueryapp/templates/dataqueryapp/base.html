@@ -53,8 +53,14 @@
                 <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
                 {% csrf_token %}
             </form>
+            
+            <form class='main-form' action="/dash/similar_members/" method="POST">
+                <input placeholder="ВВЕДИ ID ДВУХ ГРУПП" class='main-form-input-area' name="groups" type="text">
+                <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
+                {% csrf_token %}
+            </form>
 
-
+        <a href=""></a>
 
         </div>
 
