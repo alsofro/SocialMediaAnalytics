@@ -33,7 +33,11 @@ class SMAUserEditForm(UserChangeForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'age', 'password')
 =======
         fields = ('username', 'first_name', 'last_name', 'email', 'password')
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> d4f7942bfde3bcea95aae21d7379a8027cf01bfe
+>>>>>>> reberu-patch-2
 
     def __init__(self, *args, **kwargs):
         super(SMAUserEditForm, self).__init__(*args, **kwargs)
@@ -61,4 +65,8 @@ class SMAUserProfileEditForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
 =======
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> d4f7942bfde3bcea95aae21d7379a8027cf01bfe
+>>>>>>> reberu-patch-2
