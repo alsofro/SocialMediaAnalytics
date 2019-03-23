@@ -1,17 +1,3 @@
-from django.db import models
-from django.contrib.auth.models import AbstractUser
-
-<<<<<<< HEAD
-class SMAUser(AbstractUser):
-    age = models.PositiveIntegerField(verbose_name = 'возраст', default = 0)
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(SMAUser, unique=True, null=False, db_index=True, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=255, blank=True)
-    last_name = models.CharField(max_length=255, blank=True)
-    vk_username = models.CharField(max_length=255, blank=True)
-    vk_access_token = models.CharField(max_length=255, blank=True)
-=======
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -24,7 +10,7 @@ class SMAUserProfile(models.Model):
     user = models.OneToOneField(SMAUser, unique=True, null=False, db_index=True, on_delete=models.CASCADE)
     first_name = models.CharField(verbose_name='имя', max_length=255, blank=True)
     last_name = models.CharField(verbose_name='фамилия', max_length=255, blank=True)
-    vk_access_token = models.CharField(verbose_name='токен', max_length=255, blank=True)
+    vk_access_token = models.CharField(verbose_name='ВК токен', max_length=255, blank=True)
 
     @receiver(post_save, sender=SMAUser)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -34,8 +20,3 @@ class SMAUserProfile(models.Model):
     @receiver(post_save, sender=SMAUser)
     def save_user_profile(sender, instance, **kwargs):
         instance.smauserprofile.save()
-<<<<<<< HEAD
->>>>>>> master
-=======
->>>>>>> d4f7942bfde3bcea95aae21d7379a8027cf01bfe
->>>>>>> reberu-patch-2

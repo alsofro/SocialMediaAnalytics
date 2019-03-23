@@ -1,8 +1,7 @@
 import requests
 from django.shortcuts import render
 import datetime
-from .models import GroupVkProfile 
-
+from .models import GroupVkProfile
 import time
 
 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from django.db import models
 from django.conf import settings
 
@@ -15,8 +14,3 @@ class GroupVkProfile(models.Model):
 
     def __str__(self):
         return self.post_id
-=======
-from django.db import models
-
-# Create your models here.
->>>>>>> reberu-patch-2
