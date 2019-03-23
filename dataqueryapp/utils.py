@@ -1,10 +1,11 @@
+import re
+import requests
+
 from django.conf import settings
 from mainapp.models import VkGroups
-import requests
-import re
 
 
-def sanitize_identity(identity):
+def sanitize_user_input(identity):
     if re.match(r'\d+', identity):  # number
         return identity
     elif re.match(r'[A-Za-z0-9~_.-]', identity):  # ascii

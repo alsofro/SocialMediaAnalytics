@@ -1,10 +1,11 @@
+import datetime
 import requests
+import time
+
+from django.conf import settings
 from django.shortcuts import render
 from mainapp.models import VkGroups
-from django.conf import settings
-import datetime
-import time
-from dataqueryapp.utils import sanitize_identity
+from dataqueryapp.utils import sanitize_user_input
 
 
 def main(request):
@@ -21,7 +22,7 @@ def test(request):
     identity = 0
     items_per_request = 100
     if request.POST:
-        identity = sanitize_identity(request.POST.get('identity'))
+        identity = sanitize_user_input(request.POST.get('identity'))
         identity = '-{}'.format(identity)
 
     while True:
