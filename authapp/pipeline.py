@@ -1,4 +1,3 @@
-from authapp.models import UserProfile
 
 def save_user_profile(backend, user, response, *args, **kwargs):
     print(response)
@@ -13,3 +12,5 @@ def save_user_profile(backend, user, response, *args, **kwargs):
             user.smauserprofile.vk_access_token = response['access_token']
 
         user.save()
+
+    return
