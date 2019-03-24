@@ -1,6 +1,7 @@
 from django.urls import path
 import dataqueryapp.views as dataqueryapp
 
+
 app_name = 'dataqueryapp'
 
 urlpatterns = [

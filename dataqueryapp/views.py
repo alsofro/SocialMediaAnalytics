@@ -2,9 +2,11 @@ import datetime
 import requests
 import time
 
+from .models import GroupVkProfile
+from authapp.models import SMAUserProfile
+from mainapp.models import VkGroups
 from django.conf import settings
 from django.shortcuts import render
-from mainapp.models import VkGroups
 from dataqueryapp.utils import sanitize_user_input
 
 
@@ -13,8 +15,8 @@ def main(request):
 
 
 def test(request):
-    # TODO token = request.user.vk_token
-    token = '20b77cd4812b234c2d0f4d4a288bdf12809c0a76b5e7225d42c001829d355bcac63691196dbe0a6a83598'
+    token = SMAUserProfile.objects.get(pk=request.user.id).vk_access_token
+    #token = '20b77cd4812b234c2d0f4d4a288bdf12809c0a76b5e7225d42c001829d355bcac63691196dbe0a6a83598'
     offset = 0
     all_posts = []
     date_x = 1552250789
@@ -79,6 +81,9 @@ def test(request):
             post_reposts = post['reposts']['count']
         except:
             post_reposts = 0
+        
+
+        GroupVkProfile.objects.all()
 
         data_set = {
             'id': post_id,
@@ -88,14 +93,23 @@ def test(request):
             'comments': post_comments,
             'reposts': post_reposts
         }
+
+        bd_group_profile = GroupVkProfile(posts_id=post_id,
+                                          posts_likes=post_likes,
+                                          posts_date=post_date,
+                                          posts_comments= post_comments,
+                                          posts_reposts= post_reposts)
+        bd_group_profile.save()
         total_posts_dict.append(data_set)
+
 
     data = {'posts': total_posts_dict}
     return render(request, 'dataqueryapp/test.html', context=data)
 
 
 def similar_members(request):
-    token = '20b77cd4812b234c2d0f4d4a288bdf12809c0a76b5e7225d42c001829d355bcac63691196dbe0a6a83598'
+    token = SMAUserProfile.objects.get(pk=request.user.id).vk_access_token
+    #token = '20b77cd4812b234c2d0f4d4a288bdf12809c0a76b5e7225d42c001829d355bcac63691196dbe0a6a83598'
     groups_list = []
     groups_data = {}  # {'identity1': {'photo' : 'http://', 'count': 12, 'members': [1, 2, 3, 4 ... n]}
     clock = 0

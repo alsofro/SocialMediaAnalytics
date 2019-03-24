@@ -17,7 +17,7 @@ class SMAUserLoginForm(AuthenticationForm):
 class SMAUserRegisterForm(UserCreationForm):
     class Meta:
         model = SMAUser
-        fields = ('username', 'first_name', 'password1', 'password2', 'email')
+        fields = ('username', 'first_name', 'last_name', 'password1', 'password2', 'email')
 
     def __init__(self, *args, **kwargs):
         super(SMAUserRegisterForm, self).__init__(*args, **kwargs)
@@ -25,18 +25,11 @@ class SMAUserRegisterForm(UserCreationForm):
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
 
-    def clean_age(self):
-        data = self.cleaned_data['age']
-        if data < 18:
-            raise forms.ValidationError("Вы слишком молоды!")
-
-        return data
-
 
 class SMAUserEditForm(UserChangeForm):
     class Meta:
         model = SMAUser
-        fields = ('username', 'first_name', 'email', 'age', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password')
 
     def __init__(self, *args, **kwargs):
         super(SMAUserEditForm, self).__init__(*args, **kwargs)
@@ -46,9 +39,3 @@ class SMAUserEditForm(UserChangeForm):
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
 
-    def clean_age(self):
-        data = self.cleaned_data['age']
-        if data < 18:
-            raise forms.ValidationError("Вы слишком молоды!")
-
-        return data
