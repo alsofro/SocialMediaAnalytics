@@ -2,6 +2,7 @@ import requests
 from django.shortcuts import render
 import datetime
 import time
+from .models import GroupVkProfile 
 
 
 # Create your views here.
@@ -69,6 +70,8 @@ def test(request):
         except:
             post_reposts = 0
 
+        GroupVkProfile.objects.all()
+
         data_set = {
             'id': post_id,
             'likes': post_likes,
@@ -77,12 +80,16 @@ def test(request):
             'comments': post_comments,
             'reposts': post_reposts
         }
-
+        
+        bd_group_profile= GroupVkProfile(posts_id= post_id, posts_likes= post_likes, posts_date=post_date, posts_comments= post_comments, posts_reposts= post_reposts)
+        bd_group_profile.save()
         total_posts_dict.append(data_set)
 
     data = {'posts': total_posts_dict}
 
+
     return render(request, 'dataqueryapp/test.html', context=data)
+
 
 
 def similar_members(request):
@@ -143,8 +150,7 @@ def similar_members(request):
 
         idx_groups_data += 1
 
-    similar_members = list(
-        groups_data['{}'.format(groups_list[0])]['members'] & groups_data['{}'.format(groups_list[1])]['members'])
+    similar_members =list(groups_data['{}'.format(groups_list[0])]['members'] & groups_data['{}'.format(groups_list[1])]['members'])
 
     ids = ','.join(map(str, similar_members))
 
