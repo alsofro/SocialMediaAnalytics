@@ -8,6 +8,15 @@ from mainapp.models import VkGroups
 def sanitize_user_input(identity):
     if re.match(r'\d+', identity):  # number
         return identity
+
+    elif re.match(r'public\d+', identity):
+        number = identity.split('public')[1]
+        return get_group_id_by_name(number)
+
+    elif re.match(r'club\d+', identity):
+        number = identity.split('club')[1]
+        return get_group_id_by_name(number)
+
     elif re.match(r'[A-Za-z0-9~_.-]', identity):  # ascii
         return get_group_id_by_name(identity)
 
@@ -15,6 +24,7 @@ def sanitize_user_input(identity):
 def get_group_id_by_name(group_name):
     try:
         vk_group_id = VkGroups.objects.filter(screen_name=group_name)[0].vk_group_id
+        # FIXIT протестировать варианты формата group_ids
         return str(vk_group_id)
     except:
         # TODO token = request.user.vk_token

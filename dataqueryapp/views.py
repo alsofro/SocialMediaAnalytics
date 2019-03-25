@@ -8,6 +8,7 @@ from mainapp.models import VkGroups
 from django.conf import settings
 from django.shortcuts import render
 from dataqueryapp.utils import sanitize_user_input
+from django.db.models import Q
 
 
 def main(request):
@@ -97,8 +98,9 @@ def test(request):
         bd_group_profile = GroupVkProfile(posts_id=post_id,
                                           posts_likes=post_likes,
                                           posts_date=post_date,
-                                          posts_comments= post_comments,
-                                          posts_reposts= post_reposts)
+                                          posts_text=post_text,
+                                          posts_comments=post_comments,
+                                          posts_reposts=post_reposts)
         bd_group_profile.save()
         total_posts_dict.append(data_set)
 
@@ -174,5 +176,7 @@ def similar_members(request):
 
 def vk_groups_search(request):
     text_input = request.POST.get('text')
-    result = VkGroups.objects.filter(name__contains=text_input)
-    return result # result to json
+    result_groups = list(VkGroups.objects.filter(
+                            Q(name__contains=text_input) | Q(name__contains=text_input)
+                        ).values())
+    return result_groups # result to json
