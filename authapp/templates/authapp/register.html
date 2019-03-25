@@ -1,12 +1,13 @@
 {% extends 'authapp/base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
-            <form action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ register_form.as_p }}
-                <br>
-                <input type="submit" value="зарегистрироваться">
-            </form>
+<form class='main-form auth-form' action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ register_form }}
+    <br>
+    <input class='main-form-submit-button auth-button' type="submit" value="ПРИСОЕДИНИТЬСЯ">
+</form>
 
 {% endblock %}
