@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Social Media Analytics</title>
-    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% endblock %}
 </head>
 
 <body>
@@ -73,7 +75,9 @@
 
         </div>
     </div>
+    {% block js %}
     <script> </script>
+    {% endblock %}
 </body>
 
 </html>
