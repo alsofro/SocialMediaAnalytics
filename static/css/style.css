@@ -33,6 +33,8 @@ body {
 .register:hover,
 li > a,
 li > a:hover,
+.group-name > a,
+.group-name > a:hover,
 .promo > a,
 .promo > a:hover,
 .main-form-submit-button,
@@ -53,7 +55,8 @@ ul {
     display: flex;
 }
 
-li > a {
+li > a,
+.group-name > a {
     display: block;
     margin: auto 12px;
     color: #212121;
@@ -61,7 +64,8 @@ li > a {
     font-weight: 100;
 }
 
-li > a:hover {
+li > a:hover,
+.group-name > a:hover {
     color: #ff8148;
 }
 
@@ -296,6 +300,7 @@ li > a:hover {
     justify-content: center;
     font-size: 12pt;
     margin: 15px auto;
+    text-align: center;
 }
 .register-only {
     margin: 100px 0;
