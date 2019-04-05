@@ -33,10 +33,14 @@ body {
 .register:hover,
 li > a,
 li > a:hover,
+.group-name > a,
+.group-name > a:hover,
 .promo > a,
 .promo > a:hover,
 .main-form-submit-button,
-.main-form-submit-button:hover {
+.main-form-submit-button:hover,
+.vk-login,
+.vk-login:hover{
     transition: 0.3s;
 }
 
@@ -51,7 +55,8 @@ ul {
     display: flex;
 }
 
-li > a {
+li > a,
+.group-name > a {
     display: block;
     margin: auto 12px;
     color: #212121;
@@ -59,7 +64,8 @@ li > a {
     font-weight: 100;
 }
 
-li > a:hover {
+li > a:hover,
+.group-name > a:hover {
     color: #ff8148;
 }
 
@@ -83,10 +89,20 @@ li > a:hover {
     padding: 8px;
 }
 
+.vk-login {
+    border: 1px solid #4872a3;
+}
+
 .register:hover {
     background-color: #ff8148;
     color: #fff;
     box-shadow: 0 4px 18px #ffbe4a;
+}
+
+.vk-login:hover {
+    background-color: #4a76a8;
+    color: #fff;
+    box-shadow: 0 4px 18px #4a76a8;
 }
 
 .main {
@@ -152,20 +168,41 @@ li > a:hover {
     min-width: 320px;
     display: flex;
     justify-content: center;
-    margin: 100px auto;
+    margin: 40px auto;
+    font-size: 12pt;
+    font-weight: 500;
+    font-family: monospace;
+}
+
+.main-form > label {
+    margin: 4px 10px;
+    color: #212121;
+    font-size: 10pt;
+    font-weight: 100;
+    font-family: monospace;
+}
+
+.auth-form {
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.auth-form>ul {
+   display: none;
 }
 
 
-.main-form-input-area {
+.main-form-input-area,
+.form-control {
     display: flex;
     border-radius: 8px;
-    border: 1px solid #212121;
+    border: 1px solid #ccc;
     padding: 4px 10px;
     margin: 10px;
+    height: 30px;
 }
 
 .main-form-submit-button {
-    display: flex;
     margin-top: 10px;
     display: block;
     height: 40px;
@@ -173,7 +210,7 @@ li > a:hover {
     background-color: white;
     border-radius: 8px;
     border: 1px solid #ff8148;
-    color: black;
+    color: #212121;
     margin: 10px;
 }
 
@@ -188,7 +225,9 @@ li > a:hover {
     margin: 10px;
 }
 
-.post-element {
+.post-element,
+.group,
+.member {
     border: 1px solid #ddd;
     width: 400px;
     height: fit-content;
@@ -198,8 +237,17 @@ li > a:hover {
     box-shadow: 0 4px 10px #eee;
 }
 
+.group,
+.member {
+    display: flex;
+    width: 400px;
+    vertical-align: middle;
+    justify-content: space-between;
+}
+
 .post-element-top,
-.post-elements-bottom {
+.post-elements-bottom,
+.groups-top {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -209,7 +257,8 @@ li > a:hover {
 .post-date,
 .post-likes,
 .post-comments,
-.post-reposts {
+.post-reposts,
+.groups-id, .groups-members{
     display: flex;
     background-color: #eee;
     border-radius: 4px;
@@ -237,14 +286,63 @@ li > a:hover {
     flex-wrap: wrap;
 }
 
-.post-text {
+.post-text,
+.group-name {
     margin: 30px 10px;
     color: #212121;
     font-size: 10pt;
     font-weight: 100;
     font-family: sans-serif;
 }
+
+.group-name {
+    display: flex;
+    justify-content: center;
+    font-size: 12pt;
+    margin: 15px auto;
+    text-align: center;
+}
 .register-only {
     margin: 100px 0;
     width: auto;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container-members {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 600px;
+    width: auto;
+    margin: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px #eee;
+}
+
+.container-groups-members {
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+    padding: 15px;
+}
+
+.container-groups {
+    margin: 15px;
+}
+
+.auth-button {
+    width: 150px;
+}
+
+.auth-login {
+    display: flex;
+    justify-content: center;
 }

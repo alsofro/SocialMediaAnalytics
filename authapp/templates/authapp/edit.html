@@ -1,16 +1,12 @@
 {% extends 'authapp/base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 
-    <form action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ edit_form.as_p }}
-        <input class="form-control" type="submit" value="сохранить">
-    </form>
-    <button>
-        <a href="{% url 'main' %}" class="">
-            на главную
-        </a>
-    </button>
+<form class='main-form auth-form' action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ edit_form }}
+    <input class='main-form-submit-button auth-button' type="submit" value="СОХРАНИТЬ">
+</form>
 
 {% endblock %}
