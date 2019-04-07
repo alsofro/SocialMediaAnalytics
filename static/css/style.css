@@ -346,3 +346,9 @@ li > a:hover,
     display: flex;
     justify-content: center;
 }
+
+#indicator {
+    position: relative;
+    top: 15px;
+    visibility: hidden;
+}

@@ -263,12 +263,10 @@ fabric.properties
 .idea/
 
 
-dataqueryapp/__pycache__/
 
-mainapp/__pycache__/
+*/migrations/*_initial.py
 
-authapp/__pycache__/
+*/__pycache__/*.pyc
 
-sma/__pycache__/
 
 # End of https://www.gitignore.io/api/django,python,pycharm

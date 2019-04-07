@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -49,26 +50,61 @@
         <div class="main">
 
             <form class='main-form' action="/dash/test/" method="POST">
-                <input placeholder="ВВЕДИ ID ГРУППЫ" class='main-form-input-area' name="identity" type="text">
+                <input id="search-group-one" placeholder="ВВЕДИ ID ГРУППЫ" class='typeahead main-form-input-area form-control-input-lg' autocomplete="off" name="identity" type="text">
+                <!--
                 <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
+               -->
                 {% csrf_token %}
             </form>
             
             <form class='main-form' action="/dash/similar_members/" method="POST">
-                <input placeholder="ВВЕДИ ID ДВУХ ГРУПП" class='main-form-input-area' name="groups" type="text">
-                <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
+                <span id="indicator" ><img src="{% static 'images/loading.gif' %}" alt=""></span>
+                <input id="search-group-two" placeholder="ВВЕДИ ID ДВУХ ГРУПП" class='main-form-input-area' name="groups" type="text">
+                <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ" onclick="buttonOnClick();">
                 {% csrf_token %}
             </form>
 
         <a href=""></a>
 
         </div>
-
         <div class="footer">
 
         </div>
-    </div>
-    <script> </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+    <script>
+       function buttonOnClick() {
+           var loader = document.querySelector('#indicator');
+           loader.style.visibility = "visible";
+       }
+    </script>
+    <script>
+        $(function () {
+           $("#search-group").typeahead({
+               source: function (query, result) {
+
+                  $.post("/dash/vk_groups_search/", {
+                      csrfmiddlewaretoken: "{{ csrf_token }}",
+                      text: query
+                  }).done(function(resp) {
+                      result($.map(resp.data, function (item) {
+                          console.log(item);
+                          return item;
+                      }));
+                  });
+               }
+           });
+        });
+    </script>
+    <style>
+
+
+        .typeahead.dropdown-menu {
+            position: static;
+            left: 50%;
+        }
+    </style>
 </body>
 
 </html>

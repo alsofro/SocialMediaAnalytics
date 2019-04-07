@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -8,6 +7,7 @@ from django.dispatch import receiver
 class SMAUser(AbstractUser):
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
+
 
 class SMAUserProfile(models.Model):
     user = models.OneToOneField(SMAUser, unique=True, null=False, db_index=True, on_delete=models.CASCADE)
