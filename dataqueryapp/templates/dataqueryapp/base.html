@@ -4,8 +4,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
-    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+    <title>
+        {% block title %}
+        {{ title|title }}
+        {% endblock %}
+    </title>
+    {% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% endblock %}
 </head>
 
 <body>
@@ -45,8 +51,7 @@
 
 
         </div>
-
-        <div class="main">
+	<div class="main">
 
             <form class='main-form' action="/dash/test/" method="POST">
                 <input placeholder="ВВЕДИ ID ГРУППЫ" class='main-form-input-area' name="identity" type="text">
@@ -59,7 +64,10 @@
                 <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
                 {% csrf_token %}
             </form>
-
+	
+{% block content %}
+{% endblock %}
+      
         <a href=""></a>
 
         </div>
@@ -68,7 +76,9 @@
 
         </div>
     </div>
+    {% block js %}
     <script> </script>
+    {% endblock %}
 </body>
 
 </html>
