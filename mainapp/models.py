@@ -123,15 +123,20 @@ class VkGroups(models.Model):
     @classmethod
     def like_to_json(cls, text_input):
         groups = []
+        #screen_name__startswith=text_input
+        #Q(name__contains=text_input) | Q(name__contains=text_input)
+        #Q(screen_name__startswith=text_input) | Q(name__contains=text_input)
         for group in VkGroups.objects.filter(
-                        Q(name__contains=text_input) | Q(name__contains=text_input)
-                        ).values():
+                            Q(screen_name__startswith=text_input) | Q(name__contains=text_input)
+                        ).order_by('name').values():
             groups.append({
-                'name': group['screen_name']
+                'screen_name': group['screen_name'],
+                'name': group['name'],
+                #'release_date': group['name'],
                 #'description': group['description']
-                #'name': group['name'],
+                #'full:w_name': group['name'],
             })
-        return groups
+        return groups[:10]
 
     @classmethod
     def create_new_group(cls, group_json):

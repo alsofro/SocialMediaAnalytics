@@ -7,6 +7,7 @@
     <title>Dashboard</title>
     <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </head>
 
 <body>
@@ -21,6 +22,7 @@
                     <li><a href="#">РЕШЕНИЯ</a></li>
                     <li><a href="#">API</a></li>
                     <li><a href="#">КОНТАКТЫ</a></li>
+                    <li><a href="/dash/typeahead/">TYPEAHEAD</a></li>
                 </ul>
 
                 {% if user.is_authenticated %}
@@ -44,13 +46,14 @@
 
             </div>
 
-
         </div>
 
         <div class="main">
 
             <form class='main-form' action="/dash/test/" method="POST">
+               <div id="scrollable-dropdown-menu">
                 <input id="search-group-one" placeholder="ВВЕДИ ID ГРУППЫ" class='typeahead main-form-input-area form-control-input-lg' autocomplete="off" name="identity" type="text">
+               </div>
                 <!--
                 <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
                -->
@@ -79,32 +82,5 @@
            loader.style.visibility = "visible";
        }
     </script>
-    <script>
-        $(function () {
-           $("#search-group").typeahead({
-               source: function (query, result) {
-
-                  $.post("/dash/vk_groups_search/", {
-                      csrfmiddlewaretoken: "{{ csrf_token }}",
-                      text: query
-                  }).done(function(resp) {
-                      result($.map(resp.data, function (item) {
-                          console.log(item);
-                          return item;
-                      }));
-                  });
-               }
-           });
-        });
-    </script>
-    <style>
-
-
-        .typeahead.dropdown-menu {
-            position: static;
-            left: 50%;
-        }
-    </style>
 </body>
-
 </html>

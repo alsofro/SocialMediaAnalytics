@@ -1,4 +1,5 @@
 import datetime
+import json
 import requests
 import time
 
@@ -207,9 +208,13 @@ def similar_members(request):
     return render(request, 'dataqueryapp/similar_members.html', context=total_data)
 
 
+def typeahead(request):
+    return render(request, 'dataqueryapp/typeahead.html')
+
+
 def vk_groups_search(request):
-    print("in da func >>>>>>>>>>>>>>>>>>>")
-    print(request.POST)
-    text_input = request.POST.get('text')
+    print(request.GET.get('query'))
+    text_input = request.GET.get('query')
+    #text_input = request.POST.get('text')
     result_groups = VkGroups.like_to_json(text_input)
     return JsonResponse({'data': result_groups})
