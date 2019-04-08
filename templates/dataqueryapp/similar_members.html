@@ -1,0 +1,61 @@
+{% extends "dataqueryapp/base.html" %}
+{% load staticfiles %}
+        {% block title %}
+        Похожие пользователи
+        {% endblock %}
+{% block content %}
+       
+
+            <div class="container-groups-members">
+
+                <div class="container-groups">
+                    {% for group in groups %}
+                    <div class="group">
+                        <img class='avatar' src="{{group.photo_200}}" alt="{{group.name}}">
+                        <div class="group-right-div">
+                            <div class="groups-top">
+                                <div class="groups-id">ID {{group.id}}</div>
+                                <div class="groups-members">УЧАСТНИКИ: {{group.members_count}}</div>
+                            </div>
+
+                            <div class="group-name">
+                                <a target="_blank" href="http://vk.com/club{{group.id}}">{{group.name|upper}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="container-members">
+                    {% for member in members %}
+                    <div class="member">
+                        <img class='avatar' src="{{member.photo_200}}" alt="{{member.first_name}} {{member.last_name_name}}">
+                        <div class="member-right-div">
+                            <p>{{member.id}}</p>
+                            <p>{{member.first_name|upper}}</p>
+                            <p>{{member.last_name|upper}}</p>
+                            
+                            {%if member.instagram %}
+                            <p><a target="_blank" href="http://instagram.com/{{member.instagram}}">INSTAGRAM {{member.instagram|upper}}</a></p>
+                            {%endif%}
+                            
+                            {%if member.skype %}
+                            <p>SKYPE {{member.skype|upper}}</p>
+                            {%endif%}
+                            
+                            {%if member.twitter %}
+                            <p><a target="_blank" href="http://twitter.com/{{member.twitter}}">TWITTER {{member.twitter|upper}}</a></p>
+                            {%endif%}
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+
+        </div>
+{% endblock %}
+       
