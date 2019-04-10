@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
-
 </head>
 
 <body>
@@ -81,22 +80,22 @@
                     <div class="member">
                         <img class='avatar' src="{{member.photo_200}}" alt="{{member.first_name}} {{member.last_name_name}}">
                         <div class="member-right-div">
-                            <p><a href="https://vk.com/id{{member.id}}" target="_blank">{{member.id}}</a></p>
+                            <p>{{member.id}}</p>
                             <p>{{member.first_name|upper}}</p>
                             <p>{{member.last_name|upper}}</p>
-
+                            
                             {%if member.instagram %}
                             <p><a target="_blank" href="http://instagram.com/{{member.instagram}}">INSTAGRAM {{member.instagram|upper}}</a></p>
                             {%endif%}
-
+                            
                             {%if member.skype %}
                             <p>SKYPE {{member.skype|upper}}</p>
                             {%endif%}
-
+                            
                             {%if member.twitter %}
                             <p><a target="_blank" href="http://twitter.com/{{member.twitter}}">TWITTER {{member.twitter|upper}}</a></p>
                             {%endif%}
-
+                            
                         </div>
                     </div>
                     {% endfor %}

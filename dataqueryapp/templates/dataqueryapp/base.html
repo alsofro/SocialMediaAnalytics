@@ -6,8 +6,6 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 </head>
 
 <body>
@@ -22,7 +20,6 @@
                     <li><a href="#">РЕШЕНИЯ</a></li>
                     <li><a href="#">API</a></li>
                     <li><a href="#">КОНТАКТЫ</a></li>
-                    <li><a href="/dash/typeahead/">TYPEAHEAD</a></li>
                 </ul>
 
                 {% if user.is_authenticated %}
@@ -46,41 +43,32 @@
 
             </div>
 
+
         </div>
 
         <div class="main">
 
             <form class='main-form' action="/dash/test/" method="POST">
-               <div id="scrollable-dropdown-menu">
-                <input id="search-group-one" placeholder="ВВЕДИ ID ГРУППЫ" class='typeahead main-form-input-area form-control-input-lg' autocomplete="off" name="identity" type="text">
-               </div>
-                <!--
+                <input placeholder="ВВЕДИ ID ГРУППЫ" class='main-form-input-area' name="identity" type="text">
                 <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
-               -->
                 {% csrf_token %}
             </form>
             
             <form class='main-form' action="/dash/similar_members/" method="POST">
-                <span id="indicator" ><img src="{% static 'images/loading.gif' %}" alt=""></span>
-                <input id="search-group-two" placeholder="ВВЕДИ ID ДВУХ ГРУПП" class='main-form-input-area' name="groups" type="text">
-                <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ" onclick="buttonOnClick();">
+                <input placeholder="ВВЕДИ ID ДВУХ ГРУПП" class='main-form-input-area' name="groups" type="text">
+                <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ">
                 {% csrf_token %}
             </form>
 
         <a href=""></a>
 
         </div>
+
         <div class="footer">
 
         </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
-    <script>
-       function buttonOnClick() {
-           var loader = document.querySelector('#indicator');
-           loader.style.visibility = "visible";
-       }
-    </script>
+    </div>
+    <script> </script>
 </body>
+
 </html>

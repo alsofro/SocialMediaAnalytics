@@ -38,4 +38,3 @@ class SMAUserEditForm(UserChangeForm):
             field.help_text = ''
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
-

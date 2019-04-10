@@ -6,8 +6,11 @@ from django.urls import reverse
 
 def login(request):
     title = 'вход'
+
     login_form = SMAUserLoginForm(data=request.POST)
+
     next = request.GET['next'] if 'next' in request.GET.keys() else ''
+
     if request.method == 'POST' and login_form.is_valid():
         username = request.POST['username']
         password = request.POST['password']
@@ -37,8 +40,10 @@ def logout(request):
 
 def register(request):
     title = 'регистрация'
+
     if request.method == 'POST':
         register_form = SMAUserRegisterForm(request.POST)
+
         if register_form.is_valid():
             register_form.save()
             return HttpResponseRedirect(reverse('auth:login'))
@@ -54,6 +59,7 @@ def register(request):
 
 def edit(request):
     title = 'редактирование'
+
     if request.method == 'POST':
         edit_form = SMAUserEditForm(request.POST, request.FILES, instance=request.user)
         if edit_form.is_valid():
