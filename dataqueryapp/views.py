@@ -2,10 +2,6 @@ import datetime
 import json
 import requests
 import time
-<<<<<<< HEAD
-=======
-from .models import GroupVkProfile
->>>>>>> master
 
 from django.http import JsonResponse
 from .models import GroupVkProfile
@@ -17,32 +13,24 @@ from dataqueryapp.utils import sanitize_user_input
 
 
 def main(request):
-    title = 'Рабочее пространство'# Заголовок страницы
-    content = {'title':title}
-    return render(request, 'dataqueryapp/base.html', content)
+    return render(request, 'dataqueryapp/base.html')
 
 
 def test(request):
-    token = SMAUserProfile.objects.get(pk=request.user.id).vk_access_token
-    #token = '20b77cd4812b234c2d0f4d4a288bdf12809c0a76b5e7225d42c001829d355bcac63691196dbe0a6a83598'
+    #token = SMAUserProfile.objects.get(pk=request.user.id).vk_access_token
+    token = '20b77cd4812b234c2d0f4d4a288bdf12809c0a76b5e7225d42c001829d355bcac63691196dbe0a6a83598'
     offset = 0
     all_posts = []
     date_x = 1552250789
     total_posts_dict = []
-<<<<<<< HEAD
     identity = 0
     items_per_request = 100
-=======
-    IDENTITY = 0
-    title = "Поиск групп" # Заголовок страницы
->>>>>>> master
 
     if request.POST:
         identity = sanitize_user_input(request.POST.get('identity'))
         #identity = '-{}'.format(identity)
 
     while True:
-<<<<<<< HEAD
         r = requests.get('https://api.vk.com/method/wall.get',
                          params={'owner_id': identity,
                                  'access_token': token,
@@ -54,12 +42,6 @@ def test(request):
         if response.get('error'):
             if response['error'].get('error_code') == 5:
                 print(response['error']['error_msg'])
-=======
-        r = requests.post('https://api.vk.com/method/wall.get', params={'owner_id': IDENTITY, 'access_token': TOKEN,
-                                                                       'v': VERSION, 'count': 100, 'offset': offset})
-
-        posts = r.json()['response']['items']
->>>>>>> master
 
         try:
             posts = response['response']['items']
@@ -117,7 +99,6 @@ def test(request):
             'comments': post_comments,
             'reposts': post_reposts
         }
-<<<<<<< HEAD
         bd_group_profile = GroupVkProfile(posts_id=post_id,
                                           posts_likes=post_likes,
                                           posts_date=post_date,
@@ -128,29 +109,12 @@ def test(request):
         total_posts_dict.append(data_set)
 
     data = {'posts': total_posts_dict}
-=======
-
-        bd_group_profile = GroupVkProfile(posts_id=post_id, posts_likes=post_likes, posts_date=post_date,
-                                          posts_comments=post_comments, posts_reposts=post_reposts)
-        bd_group_profile.save()
-        total_posts_dict.append(data_set)
-
-    data = {'posts': total_posts_dict, 
-            'title': title,
-    }
-
->>>>>>> master
     return render(request, 'dataqueryapp/test.html', context=data)
 
 
 def similar_members(request):
-<<<<<<< HEAD
-    token = SMAUserProfile.objects.get(pk=request.user.id).vk_access_token
-    #token = '20b77cd4812b234c2d0f4d4a288bdf12809c0a76b5e7225d42c001829d355bcac63691196dbe0a6a83598'
-=======
-    title = "Similar_members" # Заголовок страницы
+    #token = SMAUserProfile.objects.get(pk=request.user.id).vk_access_token
     token = '20b77cd4812b234c2d0f4d4a288bdf12809c0a76b5e7225d42c001829d355bcac63691196dbe0a6a83598'
->>>>>>> master
     groups_list = []
     groups_data = {}  # {'identity1': {'photo' : 'http://', 'count': 12, 'members': [1, 2, 3, 4 ... n]}
     clock = 0
@@ -159,16 +123,11 @@ def similar_members(request):
     groups = 0
     list_of_similar_members = []
     total_members = []
-<<<<<<< HEAD
     items_per_request = 1000
-=======
-    
->>>>>>> master
 
     if request.POST:
         groups = '{}'.format(request.POST.get('groups'))
 
-<<<<<<< HEAD
     r = requests.get('https://api.vk.com/method/groups.getById',
                      params={'group_ids': groups,
                              'access_token': token,
@@ -180,18 +139,6 @@ def similar_members(request):
     total_data['groups'] = r.json()['response']
     for group in total_data['groups']:
         groups_list.append(int(group['id']))
-=======
-    r = requests.post('https://api.vk.com/method/groups.getById', params={'group_ids': groups,
-                                                                         'access_token': token,
-                                                                         'v': version,
-                                                                         'fields': 'members_count'})
-
-    total_data['groups'] = r.json()['response']
-
-    for group in total_data['groups']:
-        groups_list.append(int(group['id']))
-
->>>>>>> master
     time.sleep(1)
     for group in groups_list:
         groups_data['{}'.format(group)] = {'members': []}
@@ -219,33 +166,20 @@ def similar_members(request):
                                              'return membersList;',
 
                                      'access_token': token,
-<<<<<<< HEAD
                                      'v': settings.VK_API_VERSION})
 
 
             members = r.json()['response']
-=======
-                                     'v': version})
-
-            members = r.json()['response']
-
->>>>>>> master
             if len(members) == 0:
                 break
             groups_data['{}'.format(group)]['members'].extend(members)
-<<<<<<< HEAD
             offset += items_per_request2
-=======
-
-            offset += 25000
->>>>>>> master
 
         # Делаем список пользователей для текущей группы словарем.
         groups_data['{}'.format(group)]['members'] = set(groups_data['{}'.format(group)]['members'])
         idx_groups_data += 1
 
     similar_members = list(
-<<<<<<< HEAD
         groups_data['{}'.format(groups_list[0])]['members'] & groups_data['{}'.format(groups_list[1])]['members']
     )
     quantity_of_similar = len(similar_members)
@@ -253,31 +187,16 @@ def similar_members(request):
 
     # Создаем список из строк по 200 ids в каждой строке
     for _ in range(slices):
-=======
-        groups_data['{}'.format(groups_list[0])]['members'] & groups_data['{}'.format(groups_list[1])]['members'])
-
-    quantity_of_similar = len(similar_members)
-
-    slices = quantity_of_similar//200 + 1
-
-    # Создаем список из строк по 200 ids в каждой строке
-    for i in range(0, slices):
->>>>>>> master
         stroke = ','.join(map(str, similar_members[0:200]))
         list_of_similar_members.append(stroke)
         del similar_members[0:200]
 
     # Сохраняем в данные количество пересечений
     total_data['quantity_of_similar'] = quantity_of_similar
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     for ids in list_of_similar_members:
         if clock % 3 == 0 and clock != 0:
             time.sleep(1)
         clock += 1
-<<<<<<< HEAD
         r = requests.post('https://api.vk.com/method/users.get',
                           params={'user_ids': ids,
                                   'access_token': token,
@@ -299,19 +218,3 @@ def vk_groups_search(request):
     #text_input = request.POST.get('text')
     result_groups = VkGroups.like_to_json(text_input)
     return JsonResponse({'data': result_groups})
-=======
-
-        r = requests.post('https://api.vk.com/method/users.get',
-                          params={'user_ids': ids,
-                                  'access_token': token,
-                                  'v': version,
-                                  'fields': 'connections, photo_200'})
-
-        total_members.extend(r.json()['response'])
-
-    total_data['members'] = total_members
-
-    
-
-    return render(request, 'dataqueryapp/similar_members.html', total_data)
->>>>>>> master

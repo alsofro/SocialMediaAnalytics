@@ -4,21 +4,10 @@
 
 <head>
     <meta charset="UTF-8">
-<<<<<<< HEAD
     <title>Dashboard</title>
     <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-=======
-    <title>
-        {% block title %}
-        {{ title|title }}
-        {% endblock %}
-    </title>
-    {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    {% endblock %}
->>>>>>> master
 </head>
 
 <body>
@@ -58,7 +47,8 @@
             </div>
 
         </div>
-	<div class="main">
+
+        <div class="main">
 
             <form class='main-form' action="/dash/test/" method="POST">
                <div id="scrollable-dropdown-menu">
@@ -76,17 +66,13 @@
                 <input class='main-form-submit-button' type="submit" value="ОТПРАВИТЬ" onclick="buttonOnClick();">
                 {% csrf_token %}
             </form>
-	
-{% block content %}
-{% endblock %}
-      
+
         <a href=""></a>
 
         </div>
         <div class="footer">
 
         </div>
-<<<<<<< HEAD
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
@@ -96,11 +82,5 @@
            loader.style.visibility = "visible";
        }
     </script>
-=======
-    </div>
-    {% block js %}
-    <script> </script>
-    {% endblock %}
->>>>>>> master
 </body>
 </html>
