@@ -1,7 +1,6 @@
-import requests
+from take_vk_foaf_data import get_vk_data
+import requests, datetime, time
 from django.shortcuts import render
-import datetime
-import time
 from .models import GroupVkProfile
 
 
@@ -188,6 +187,9 @@ def similar_members(request):
 
         total_members.extend(r.json()['response'])
 
+    get_vk_data(total_members)
+
     total_data['members'] = total_members
+    print(total_data['members'])
 
     return render(request, 'dataqueryapp/similar_members.html', context=total_data)
