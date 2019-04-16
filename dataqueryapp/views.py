@@ -1,4 +1,4 @@
-from take_vk_foaf_data import get_vk_data
+from dataqueryapp.take_vk_foaf_data import get_vk_data
 import requests, datetime, time
 from django.shortcuts import render
 from .models import GroupVkProfile
@@ -183,7 +183,7 @@ def similar_members(request):
                           params={'user_ids': ids,
                                   'access_token': token,
                                   'v': version,
-                                  'fields': 'connections, photo_200'})
+                                  'fields': 'connections, photo_200, city, status, followers_count'})
 
         total_members.extend(r.json()['response'])
 
@@ -191,5 +191,9 @@ def similar_members(request):
 
     total_data['members'] = total_members
     print(total_data['members'])
+
+    # member = {id, first_name, last_name, is_closed,
+    # can_access_closed, photo_200, status, created, last_logged_in,
+    # friends, subscribers, location, instagram, twitter, skype}
 
     return render(request, 'dataqueryapp/similar_members.html', context=total_data)

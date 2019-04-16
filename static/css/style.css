@@ -1,6 +1,11 @@
+html {
+    margin-right: calc(-1 * (100vw - 100%));
+}
+
 a {
     text-decoration: none;
     font-family: monospace;
+    color: #212121;
 }
 
 input {
@@ -29,6 +34,7 @@ body {
     height: 70px;
 }
 
+a,
 .register,
 .register:hover,
 li > a,
@@ -40,7 +46,7 @@ li > a:hover,
 .main-form-submit-button,
 .main-form-submit-button:hover,
 .vk-login,
-.vk-login:hover{
+.vk-login:hover {
     transition: 0.3s;
 }
 
@@ -65,7 +71,8 @@ li > a,
 }
 
 li > a:hover,
-.group-name > a:hover {
+.group-name > a:hover,
+a:hover {
     color: #ff8148;
 }
 
@@ -187,8 +194,8 @@ li > a:hover,
     max-width: 400px;
 }
 
-.auth-form>ul {
-   display: none;
+.auth-form > ul {
+    display: none;
 }
 
 
@@ -258,7 +265,8 @@ li > a:hover,
 .post-likes,
 .post-comments,
 .post-reposts,
-.groups-id, .groups-members{
+.groups-id,
+.groups-members {
     display: flex;
     background-color: #eee;
     border-radius: 4px;
@@ -302,11 +310,13 @@ li > a:hover,
     margin: 15px auto;
     text-align: center;
 }
+
 .register-only {
     margin: 100px 0;
     width: auto;
 }
 
+/*
 .avatar {
     width: 100px;
     height: 100px;
@@ -314,6 +324,7 @@ li > a:hover,
     background-repeat: no-repeat;
     background-position: center;
 }
+*/
 
 .container-members {
     border-radius: 8px;
