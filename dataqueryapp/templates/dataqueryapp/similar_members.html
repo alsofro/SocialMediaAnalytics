@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static 'css/dataqueryapp-style.css' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -54,7 +55,122 @@
                 {% csrf_token %}
             </form>
 
-            <div class="container-groups-members">
+            <div class="wrapper-members">
+
+                {% for member in members %}
+
+                <div draggable="true" class="container-person">
+
+                    {% if member.deactivated %}
+                    <img class='avatar' src="https://vk.com/images/deactivated_200.gif" alt="{{member.first_name}} {{member.last_name_name}}">
+                    
+                    {% elif member.photo_200 %}
+                    <img class='avatar' src="{{member.photo_200}}" alt="{{member.first_name}} {{member.last_name_name}}">
+
+                    {% else %}
+                    <img class='avatar' src="https://vk.com/images/camera_200.png" alt="{{member.first_name}} {{member.last_name_name}}">
+
+                    {% endif %}
+
+                    {% if member.instagram %}
+                    <img class='social-icon' src="{% static 'images/174834-social-media-logos/svg/029-instagram.svg' %}">
+
+                    {% endif %}
+
+                    <div class="p-avatar-name-wrapper">
+                        <p class='p-avatar-name'>{{member.first_name|upper}}</p>
+                        <p class='p-avatar-name'>{{member.last_name|upper}}</p>
+                    </div>
+                    <div class="info">
+                        <div class='info-main'>
+                            <p class='p-name'>{{member.first_name|upper}}</p>
+                            <p class='p-name'>{{member.last_name|upper}}</p>
+
+                            {% if member.status %}
+                            <p class='p-status'>{{member.status|upper}}</p>
+                            {% endif %}
+
+                            <div class="metrics">
+
+                                <div class="followers">
+                                    {% if member.followers_count %}
+                                    <p class='p-count'>{{member.followers_count}}</p>
+                                    {% else %}
+                                    <p class='p-count'>Hidden</p>
+                                    {% endif %}
+                                    <p class='p-count-name'>followers</p>
+                                </div>
+
+                                <div class="friends">
+                                    {% if member.friends %}
+                                    <p class='p-count'>{{member.friends}}</p>
+                                    {% else %}
+                                    <p class='p-count'>Hidden</p>
+                                    {% endif %}
+                                    <p class='p-count-name'>friends</p>
+                                </div>
+
+                            </div>
+
+                            <div class="wrapper-metrics-social">
+
+                                {% if member.id %}
+                                <div class="metrics-social">
+                                    <img class='metrics-social-icon' src="{% static 'images/174834-social-media-logos/svg/050-vk.svg' %}">
+                                    <p><a target="_blank" href="http://vk.com/id{{member.id}}">{{member.id}}</a></p>
+                                </div>
+                                {% endif %}
+
+                                {% if member.instagram %}
+                                <div class="metrics-social">
+                                    <img class='metrics-social-icon' src="{% static 'images/174834-social-media-logos/svg/029-instagram.svg' %}">
+                                    <p><a target="_blank" href="http://instagram.com/{{member.instagram}}">{{member.instagram}}</a></p>
+                                </div>
+                                {% endif %}
+
+                                {% if member.twitter %}
+                                <div class="metrics-social">
+                                    <img class='metrics-social-icon' src="{% static 'images/174834-social-media-logos/svg/008-twitter.svg' %}">
+                                    <p><a target="_blank" href="http://twitter.com/{{member.twitter}}">{{member.twitter}}</a></p>
+                                </div>
+                                {% endif %}
+
+                                {% if member.skype %}
+                                <div class="metrics-social">
+                                    <img class='metrics-social-icon' src="{% static 'images/174834-social-media-logos/svg/015-skype.svg' %}">
+                                    <p>{{member.skype}}</p>
+                                </div>
+                                {% endif %}
+
+                                {% if member.city.title %}
+                                <div class="metrics-social">
+                                    <img class='metrics-social-icon' src="{% static 'images/148705-essential-collection/svg/worldwide.svg' %}">
+                                    <p>{{member.city.title}}</p>
+                                </div>
+                                {% endif %}
+
+                                {% if member.created %}
+                                <div class="metrics-social">
+                                    <p>Создан</p>
+                                    <p>{{member.created}}</p>
+                                </div>
+                                {% endif %}
+
+                                {% if member.last_logged_in %}
+                                <div class="metrics-social">
+                                    <p>Онлайн</p>
+                                    <p>{{member.last_logged_in}}</p>
+                                </div>
+                                {% endif %}
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!--
 
                 <div class="container-groups">
                     {% for group in groups %}
@@ -73,8 +189,10 @@
                     </div>
                     {% endfor %}
                 </div>
+-->
 
 
+            <!--
                 <div class="container-members">
                     {% for member in members %}
                     <div class="member">
@@ -83,25 +201,26 @@
                             <p>{{member.id}}</p>
                             <p>{{member.first_name|upper}}</p>
                             <p>{{member.last_name|upper}}</p>
-                            
+
                             {%if member.instagram %}
                             <p><a target="_blank" href="http://instagram.com/{{member.instagram}}">INSTAGRAM {{member.instagram|upper}}</a></p>
                             {%endif%}
-                            
+
                             {%if member.skype %}
                             <p>SKYPE {{member.skype|upper}}</p>
                             {%endif%}
-                            
+
                             {%if member.twitter %}
                             <p><a target="_blank" href="http://twitter.com/{{member.twitter}}">TWITTER {{member.twitter|upper}}</a></p>
                             {%endif%}
-                            
+
                         </div>
                     </div>
                     {% endfor %}
                 </div>
+-->
 
-            </div>
+            <!--            </div>-->
 
 
         </div>
